@@ -1,0 +1,181 @@
+/* 
+* Lab 1: The Walking Dead Quiz
+* Name: Molly Johnson
+* Course: COP2551
+* Semester: Fall 2015
+* I pledge on my honor that this work is that of my own. If I’m found to be in violation
+* of the Academic Integrity policies as outlined in the course syllabus, I understand I
+* will receive an unforgiveable F for this course regardless of withdrawal status.
+*/
+
+package quiz;
+
+import java.util.Scanner; // Import Scanner class
+
+/**
+ *
+ * @author Molly
+ */
+public class Quiz
+{
+    // Create a Scanner to obtain full name from the command window
+    static Scanner input = new Scanner(System.in);
+    
+    static String fullName; // full name
+    static String answer; // question answer
+        
+    static int correctCount = 0; // track correct answers
+    static int questionCount = 0; // question progress
+    //static int questionTotal = 10; // total number of questions
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args)
+    {
+        // Ask the user their name 
+        System.out.print("What is your full name? ");
+        fullName = input.nextLine();
+        
+        // Welcome
+        System.out.printf("%nWelcome %s to the walking dead quiz! This will determine if you are a true walking dead fan or not!%n%n", fullName);
+        
+        // Ask questions
+        askQuestion("What is Daryl Dixon's real name?",
+            "B",
+            "Andrew Lincoln",
+            "Norman Reedus",
+            "Chandler Riggs",
+            "Steven Yeun");
+    
+        askQuestion("What character chops their hand off to escape from hand cuffs?",
+             "C",
+             "Hershel Greene",
+             "Morgan Jones",
+             "Merle Dixon",
+             "The Governor");
+    
+        askQuestion("How do you kill a zombie?",
+             "D",
+             "Stab it in the heart",
+             "Break its jaw off",
+             "Break off the limbs",
+             "Shoot it in the brain");
+    
+        askQuestion("Who chose Judith's name?",
+             "B",
+            "Laurie",
+            "Carl",
+            "Rick",
+            "Maggie");
+    
+        askQuestion("What holiday was The Walking Dead released on?",
+            "D",
+            "Valentines",
+            "Christmas",
+            "Thanksgiving",
+            "Halloween");
+    
+        askQuestion("Where is The Walking Dead filmed?",
+            "B",
+            "North Carolina",
+            "Georgia",
+            "Florida",
+            "South Carolina");
+    
+        askQuestion("What accent does Andrew Lincoln have?",
+            "C",
+            "German",
+            "Australian",
+            "British",
+            "Russian");
+    
+    
+        askQuestion("How do you walk with the zombies?",
+            "B",
+            "Chop off their legs and arms",
+            "Chop off their arms and jaw",
+            "Chop off their hands and feet",
+            "Put a chain around them");
+    
+        askQuestion("Who was the first to know everyone was infected?",
+            "A",
+            "Rick",
+            "Daryl",
+            "Carl",
+            "Michonne");
+    
+        askQuestion("What type of doctor was Hershel?",
+            "D",
+            "Pediatrician",
+            "Anesthesiologist",
+            "Optometrist",
+            "Veterinarian");
+        
+        // Display results with number of correct answers
+        System.out.printf("Your quiz results: %d out of %d correct.%n%n", correctCount, questionCount);
+        
+        if (correctCount == 10)
+        {
+            System.out.printf("Wow %s! You are a Walking Dead FAN FANATIC!", fullName);
+        }
+        else if (correctCount == 9)
+        {
+            System.out.printf("Well done %s! You are obviously a fan of The Walking Dead!", fullName);
+        }
+        else if (correctCount == 8)
+        {
+            System.out.printf("Ehh.. Come on %s, you need to watch some more walking dead!", fullName);
+        }
+        else
+        {
+            System.out.printf("OMG %s! Have you ever even watched the walking dead? If so, PAY MORE ATTENTION!", fullName);
+        }
+        
+        // Spacing out the words
+        System.out.printf("%n%n");
+        
+    }
+    
+    static void askQuestion(
+            String question, 
+            String correctAnswer, 
+            String answerA, 
+            String answerB, 
+            String answerC, 
+            String answerD
+        )
+    {
+        // Increase question count
+        questionCount = questionCount + 1;
+        
+        // Ask a question
+        System.out.printf("#%d. " + question
+                + "%n A: " + answerA
+                + "%n B: " + answerB
+                + "%n C: " + answerC
+                + "%n D: " + answerD
+                + "%n%n", questionCount);
+        
+        // Get answer
+        System.out.printf("Answer: ");
+        answer = input.nextLine().toUpperCase();
+        
+        // Check answer
+        if (correctAnswer.equals(answer))
+        {
+            // Correct
+            correctCount = correctCount + 1;
+            System.out.printf("Correct!%n%n");
+        }
+        else
+        {
+            // Incorrect
+            System.out.printf("Incorrect!%n%n");
+        }
+        
+        System.out.printf("Progress: %d out of %d correct so far...%n%n", correctCount, questionCount);
+        
+    }
+
+}
